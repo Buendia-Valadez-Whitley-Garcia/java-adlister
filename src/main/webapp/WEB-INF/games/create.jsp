@@ -15,10 +15,11 @@
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea id="description" name="description" class="form-control" type="text"></textarea>
+            <textarea id="description" name="description" class="form-control"></textarea>
         </div>
         <div class="form-group">
-            <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <label for="dropdownMenuButton">Console</label>
+            <select class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" name="console" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <option value="all-consoles">All consoles</option>
                 <option value="playstation">Playstation</option>
                 <option value="xbox">XBox</option>
@@ -28,7 +29,8 @@
             </select>
         </div>
         <div class="form-group">
-            <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <label for="dropdownMenuButton2">Genre</label>
+            <select class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton2" name="genre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <option value="all-genres" >All genres</option>
                 <option value="action">Action</option>
                 <option value="adventure">Adventure</option>
@@ -45,7 +47,7 @@
         </div>
         <div class="form-group">
             <label for="release-date" placeholder="year">Release date</label>
-            <input id="release-date" name="release-date" class="form-control" type="text">
+            <input id="release-date" name="release_date" class="form-control" type="text">
         </div>
         <input type="submit" class="btn btn-block btn-primary">
     </form>
