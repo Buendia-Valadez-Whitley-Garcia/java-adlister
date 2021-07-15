@@ -11,14 +11,16 @@
 
 <div class="container">
     <h1>Here Are all the games!</h1>
-    <form action="/reviews" method="post">
+  
+  <form action="/reviews" method="post">
+
     <c:forEach var="game" items="${games}">
         <div class="col-md-6">
             <h2>${game.title}</h2>
             <p>${game.description}</p>
             <p>${game.console}</p>
             <p>${game.genre}</p>
-            <p>${game.release_date}</p>
+            <p>${game.releaseDate}</p>
         </div>
         <input name="${game.id}" type="submit" value="Reviews" class="btn btn-block btn-primary">
     </c:forEach>

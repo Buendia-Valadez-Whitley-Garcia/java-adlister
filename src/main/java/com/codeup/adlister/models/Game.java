@@ -7,9 +7,9 @@ public class Game {
     private String description;
     private String console;
     private String genre;
-    private int releaseDate;
+    private long releaseDate;
 
-    public Game(long id, long user_id, String title, String description, String console, String genre, int releaseDate) {
+    public Game(long id, long user_id, String title, String description, String console, String genre, long releaseDate) {
         this.id = id;
         this.user_id = user_id;
         this.title = title;
@@ -19,7 +19,7 @@ public class Game {
         this.releaseDate = releaseDate;
     }
 
-    public Game(long user_id, String title, String description, String console, String genre, int releaseDate) {
+    public Game(long user_id, String title, String description, String console, String genre, long releaseDate) {
         this.user_id = user_id;
         this.title = title;
         this.description = description;
@@ -35,7 +35,7 @@ public class Game {
         this.description = description;
         this.console = console;
         this.genre = genre;
-        this.releaseDate = Integer.parseInt(release_date);
+        this.releaseDate = Long.parseLong(release_date);
     }
 
     public long getId() {
@@ -80,7 +80,7 @@ public class Game {
         this.genre = genre;
     }
 
-    public int getReleaseDate() {
+    public long getReleaseDate() {
         return releaseDate;
     }
     public void setReleaseDate(int releaseDate) {
