@@ -28,6 +28,16 @@ public class Game {
         this.releaseDate = releaseDate;
     }
 
+    //constructor with a string release date
+    public Game(long user_id, String title, String description, String console, String genre, String release_date) {
+        this.user_id = user_id;
+        this.title = title;
+        this.description = description;
+        this.console = console;
+        this.genre = genre;
+        this.releaseDate = Integer.parseInt(release_date);
+    }
+
     public long getId() {
         return id;
     }

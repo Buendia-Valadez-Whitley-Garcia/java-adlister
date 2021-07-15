@@ -25,14 +25,15 @@ public class CreateGameServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = (User) request.getSession().getAttribute("user");
-//        Game ad = new Game(
-//            user.getId(),
-//            request.getParameter("title"),
-//            request.getParameter("description"),
-//
-//
-//        );
-//        DaoFactory.getGamesDao().insert(Game);
+        Game game = new Game(
+            user.getId(),
+            request.getParameter("title"),
+            request.getParameter("description"),
+            request.getParameter("console"),
+            request.getParameter("genre"),
+            request.getParameter("release_date")
+        );
+        DaoFactory.getGamesDao().insert(game);
         response.sendRedirect("/games");
     }
 }
