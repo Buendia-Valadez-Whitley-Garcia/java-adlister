@@ -16,6 +16,9 @@
         <div class="col-md-6">
             <h2>${game.title}</h2>
             <p>${game.description}</p>
+            <p>${game.console}</p>
+            <p>${game.genre}</p>
+            <p>${game.release_date}</p>
         </div>
     </c:forEach>
 </div>
