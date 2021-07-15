@@ -13,6 +13,7 @@ import java.io.IOException;
 public class GamesIndexServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("games", DaoFactory.getGamesDao().all());
+
         req.getRequestDispatcher("/WEB-INF/games/index.jsp").forward(req, resp);
     }
 }
