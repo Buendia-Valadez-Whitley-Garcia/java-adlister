@@ -16,4 +16,11 @@ public class GamesIndexServlet extends HttpServlet{
 
         req.getRequestDispatcher("/WEB-INF/games/index.jsp").forward(req, resp);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String gameID = req.getParameter("game.id");
+        req.getSession().setAttribute("gameID", gameID);
+        resp.sendRedirect("/reviews");
+    }
 }
