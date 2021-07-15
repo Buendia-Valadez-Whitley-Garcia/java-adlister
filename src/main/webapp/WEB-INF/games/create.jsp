@@ -19,17 +19,17 @@
         </div>
         <div class="form-group">
             <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <option class="other">All consoles</option>
-                <option class="playstation">Playstation</option>
-                <option class="xbox">XBox</option>
-                <option class="nintendo">Nintendo</option>
-                <option class="wii">Wii</option>
-                <option class="other">Other</option>
+                <option value="all-consoles">All consoles</option>
+                <option value="playstation">Playstation</option>
+                <option value="xbox">XBox</option>
+                <option value="nintendo">Nintendo</option>
+                <option value="wii">Wii</option>
+                <option value="other">Other</option>
             </select>
         </div>
         <div class="form-group">
             <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <option value="all" >All genres</option>
+                <option value="all-genres" >All genres</option>
                 <option value="action">Action</option>
                 <option value="adventure">Adventure</option>
                 <option value="battle-royale">Battle Royale</option>
