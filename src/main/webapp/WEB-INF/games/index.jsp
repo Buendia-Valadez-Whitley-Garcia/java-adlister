@@ -11,7 +11,6 @@
 
 <div class="container">
     <h1>Here Are all the games!</h1>
-
     <c:forEach var="game" items="${games}">
         <div class="col-md-6">
             <h2>${game.title}</h2>

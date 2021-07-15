@@ -30,7 +30,7 @@ public class MySQLGamesDao implements Games{
     public List<Game> all() {
         PreparedStatement stmt = null;
         try{
-            stmt = connection.prepareStatement("SELECT * FROM games");
+            stmt = connection.prepareStatement("SELECT * FROM games;");
             //we must turn the SQL statement into a set of results that we can view
             ResultSet rs = stmt.executeQuery();
             //we need to turn the result set into a List so we can send that to the user.
