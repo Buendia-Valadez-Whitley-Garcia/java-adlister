@@ -31,7 +31,7 @@ public class MySQLReviewsDao implements Reviews{
     public List<Review> all(Game game) {
         PreparedStatement stmt;
         try{
-            stmt = connection.prepareStatement("SELECT * FROM reviews;");
+            stmt = connection.prepareStatement("SELECT * FROM reviews");
 
 
             ResultSet rs = stmt.executeQuery();
