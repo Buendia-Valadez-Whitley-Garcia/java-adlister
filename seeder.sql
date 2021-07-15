@@ -1,10 +1,11 @@
+USE gamelister_db;
 
 INSERT INTO users (username, email, password)
 VALUES ('admin', 'admin@email.com', 'password'),
        ('austin', 'austin@email.com', 'password'),
        ('karen', 'karen@email.com', 'password'),
        ('savanna', 'savanna@email.com', 'password'),
-       ('irvin', 'irvin@email.com', 'password')
+       ('irvin', 'irvin@email.com', 'password');
 
 INSERT INTO games (user_id, title, description, console, genre, release_date)
 VALUES

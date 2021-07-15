@@ -18,7 +18,7 @@
             <p>${game.description}</p>
             <p>${game.console}</p>
             <p>${game.genre}</p>
-            <p>${game.release_date}</p>
+            <p>${game.releaseDate}</p>
         </div>
     </c:forEach>
 </div>

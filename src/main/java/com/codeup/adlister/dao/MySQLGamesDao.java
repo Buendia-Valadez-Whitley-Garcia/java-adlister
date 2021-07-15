@@ -72,7 +72,7 @@ public class MySQLGamesDao implements Games{
             stmt.setString(3, game.getDescription());
             stmt.setString(4, game.getConsole());
             stmt.setString(5, game.getGenre());
-            stmt.setInt(6, game.getReleaseDate());
+            stmt.setLong(6, game.getReleaseDate());
 
             stmt.executeUpdate();
 
