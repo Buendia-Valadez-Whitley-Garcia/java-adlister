@@ -53,6 +53,7 @@ public class CreateGameServlet extends HttpServlet {
 
         if(titleTest == null){
             titleExists = false;
+
         }
 
         String gameExists = "<span style=\"color:red\">* already exists<span>";
