@@ -9,6 +9,16 @@ public class Game {
     private String genre;
     private long releaseDate;
 
+    public Game(long id, long user_id, String title, String description) {
+        this.id = id;
+        this.user_id = user_id;
+        this.title = title;
+        this.description = description;
+        this.console = console;
+        this.genre = genre;
+        this.releaseDate = releaseDate;
+    }
+
     public Game(long id, long user_id, String title, String description, String console, String genre, long releaseDate) {
         this.id = id;
         this.user_id = user_id;
@@ -19,16 +29,6 @@ public class Game {
         this.releaseDate = releaseDate;
     }
 
-    public Game(long user_id, String title, String description, String console, String genre, long releaseDate) {
-        this.user_id = user_id;
-        this.title = title;
-        this.description = description;
-        this.console = console;
-        this.genre = genre;
-        this.releaseDate = releaseDate;
-    }
-
-    //constructor with a string release date
     public Game(long user_id, String title, String description, String console, String genre, String release_date) {
         this.user_id = user_id;
         this.title = title;
