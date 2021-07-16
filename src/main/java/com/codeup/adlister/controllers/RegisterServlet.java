@@ -23,10 +23,7 @@ public class RegisterServlet extends HttpServlet {
         String passwordConfirmation = request.getParameter("confirm_password");
 
         // validate input
-        boolean inputHasErrors = username.isEmpty()
-            || email.isEmpty()
-            || password.isEmpty()
-            || (! password.equals(passwordConfirmation));
+        boolean inputHasErrors = username.isEmpty() || email.isEmpty() || password.isEmpty();
 
         if (inputHasErrors) {
             response.sendRedirect("/register");
@@ -49,18 +46,23 @@ public class RegisterServlet extends HttpServlet {
         if(userEmailTest == null){
             userEmailExists = false;
         }
+        if(password.equals(passwordConfirmation)){
+            passwordsDontMatch = false;
+        }
 
         String usernameFound = "<span style=\"color:red\">* already exists<span>";
         String emailFound = "<span style=\"color:red\">* already exists<span>";
+        String passwordConflict = "<span style=\"color:red\">* Doesn't match<span>";
 
         // create and save a new user
-        if(!userEmailExists && !userNameExists){
+        if(!userEmailExists && !userNameExists && !passwordsDontMatch){
             User user = new User(username, email, password);
             DaoFactory.getUsersDao().insert(user);
             response.sendRedirect("/login");
-        }else if(userEmailExists && userNameExists){
+        }else if(userEmailExists && userNameExists && passwordsDontMatch){
             request.setAttribute("usernameExists", usernameFound);
             request.setAttribute("emailExists", emailFound);
+            request.setAttribute("passwordConflict", passwordConflict);
             request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
         }else if(userEmailExists || userNameExists){
             if(userEmailExists){
@@ -71,7 +73,11 @@ public class RegisterServlet extends HttpServlet {
                 request.setAttribute("emailAttempt", email);
             }
             request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
+        }else if(passwordsDontMatch){
+            request.setAttribute("passwordConflict", passwordConflict);
+            request.setAttribute("usernameAttempt", username);
+            request.setAttribute("emailAttempt", email);
+            request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
         }
-
     }
 }
