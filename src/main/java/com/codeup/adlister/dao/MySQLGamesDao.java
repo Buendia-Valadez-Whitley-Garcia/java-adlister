@@ -83,4 +83,52 @@ public class MySQLGamesDao implements Games{
             throw new RuntimeException("Error inserting game into database");
         }
     }
+
+    private String createInsertQuery(Game gm) {
+        String sql =  "INSERT INTO ads(user_id, title, description) VALUES "
+                +  gm.getId()
+                +  gm.getUser_id()
+                +  gm.getTitle()
+                +  gm.getDescription()
+                +  gm.getConsole()
+                +  gm.getGenre()
+                +  gm.getReleaseDate();
+        return sql;
+    }
+
+
+    private Game extractGame(ResultSet rs) throws SQLException {
+        return new Game(
+                rs.getLong("id"),
+                rs.getLong("user_id"),
+                rs.getString("title"),
+                rs.getString("description"),
+                rs.getString("console"),
+                rs.getString("genre"),
+                rs.getLong("release_date")
+        );
+    }
+
+    private List<Game> createGamesFromResults(ResultSet rs) throws SQLException {
+        List<Game> games = new ArrayList<>();
+        while (rs.next()) {
+            games.add(extractGame(rs));
+        }
+        return games;
+    }
+
+    @Override
+    public List<Game> searchByTitle(String query) {
+        String sql = "SELECT * FROM games WHERE title LIKE ?;";
+        String searchTermWithWildcards = "%" + query + "%";
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, searchTermWithWildcards);
+            ResultSet rs = stmt.executeQuery();
+            return createGamesFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("OOPS! Error retrieving all games...", e);
+        }
+    }
 }
