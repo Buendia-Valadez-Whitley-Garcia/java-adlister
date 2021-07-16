@@ -22,7 +22,7 @@
             <p>${game.genre}</p>
             <p>${game.releaseDate}</p>
         </div>
-        <input name="${game.id}" type="submit" value="Reviews" class="btn btn-block btn-primary">
+        <input name="selectedGame" type="submit" value="${game.id}" class="btn btn-block btn-primary">
     </c:forEach>
     </form>
 </div>

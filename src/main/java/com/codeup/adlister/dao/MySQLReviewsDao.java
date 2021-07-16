@@ -30,14 +30,13 @@ public class MySQLReviewsDao implements Reviews{
     //prepared statements can throw SQL exceptions so we will need to handle this
     public List<Review> all(Game game) {
         PreparedStatement stmt;
-        try{
+        try {
             stmt = connection.prepareStatement("SELECT * FROM reviews");
 
             ResultSet rs = stmt.executeQuery();
-
             return createReviewListFromRs(rs);
-        }catch(SQLException e){
-            throw new RuntimeException("Error generating games.");
+        } catch(SQLException e){
+            throw new RuntimeException("Error generating reviews.");
         }
     }
 
