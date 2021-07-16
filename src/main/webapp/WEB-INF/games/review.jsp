@@ -9,11 +9,11 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <div class="games">
         <h1>Game Review</h1>
-        <h2>${sessionScope.games.title}</h2>
-        <p>"Description: "${sessionScope.games.description}</p>
-        <p>"Console: "${sessionScope.games.console}</p>
-        <p>"Genre: "${sessionScope.games.genre}</p>
-        <p>"Release Year: "${sessionScope.games.release_date}</p>
+        <h2>${sessionScope.game.title}</h2>
+        <p>"Description: "${sessionScope.game.description}</p>
+        <p>"Console: "${sessionScope.game.console}</p>
+        <p>"Genre: "${sessionScope.game.genre}</p>
+        <p>"Release Year: "${sessionScope.game.releaseDate}</p>
 
     <c:forEach var="review" items="${reviews}">
 <%--        <p>"User: ${}</p>--%>

@@ -12,7 +12,7 @@
 <div class="container">
     <h1>Here Are all the games!</h1>
   
-  <form action="/reviews" method="post">
+  <form action="/games" method="post">
 
     <c:forEach var="game" items="${games}">
         <div class="col-md-6">

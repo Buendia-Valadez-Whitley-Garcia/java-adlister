@@ -7,4 +7,5 @@ public interface Games {
     List<Game> all();
     Long insert(Game game);
     List<Game> searchByTitle(String query);
+    Game findByID(Long id);
 }

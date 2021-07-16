@@ -61,6 +61,20 @@ public class MySQLGamesDao implements Games{
         );
     }
 
+    @Override
+    public Game findByID(Long id){
+        String query = "SELECT * FROM games WHERE id = ? LIMIT 1";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return extractGame(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a game with that id", e);
+        }
+    }
+
     //We need to create an insert string in order to push user input into the database
     @Override
     public Long insert(Game game) {
@@ -81,19 +95,6 @@ public class MySQLGamesDao implements Games{
             throw new RuntimeException("Error inserting game into database");
         }
     }
-
-    private String createInsertQuery(Game gm) {
-        String sql =  "INSERT INTO ads(user_id, title, description) VALUES "
-                +  gm.getId()
-                +  gm.getUser_id()
-                +  gm.getTitle()
-                +  gm.getDescription()
-                +  gm.getConsole()
-                +  gm.getGenre()
-                +  gm.getReleaseDate();
-        return sql;
-    }
-
 
     private Game extractGame(ResultSet rs) throws SQLException {
         return new Game(
