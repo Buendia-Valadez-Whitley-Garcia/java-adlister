@@ -10,7 +10,7 @@
     <h1>Create a new Game</h1>
     <form action="/games/create" method="post">
         <div class="form-group">
-            <label for="title">Title</label>
+            <label for="title">Title ${titleExists}</label>
             <input id="title" name="title" class="form-control" type="text">
         </div>
         <div class="form-group">
