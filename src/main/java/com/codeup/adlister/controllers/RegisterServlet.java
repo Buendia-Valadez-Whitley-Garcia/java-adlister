@@ -16,7 +16,7 @@ public class RegisterServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -33,9 +33,45 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
+        //create values that will determine if a user can create an account with certain details
+        boolean userNameExists = true;
+        boolean userEmailExists = true;
+        boolean passwordsDontMatch = true;
+
+        //test to see if those account details have already been taken
+        User userNameTest = DaoFactory.getUsersDao().findByUsername(username);
+        User userEmailTest = DaoFactory.getUsersDao().findByUserEmail(email);
+
+
+        if(userNameTest == null){
+            userNameExists = false;
+        }
+        if(userEmailTest == null){
+            userEmailExists = false;
+        }
+
+        String usernameFound = "<span style=\"color:red\">* already exists<span>";
+        String emailFound = "<span style=\"color:red\">* already exists<span>";
+
         // create and save a new user
-        User user = new User(username, email, password);
-        DaoFactory.getUsersDao().insert(user);
-        response.sendRedirect("/login");
+        if(!userEmailExists && !userNameExists){
+            User user = new User(username, email, password);
+            DaoFactory.getUsersDao().insert(user);
+            response.sendRedirect("/login");
+        }else if(userEmailExists && userNameExists){
+            request.setAttribute("usernameExists", usernameFound);
+            request.setAttribute("emailExists", emailFound);
+            request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
+        }else if(userEmailExists || userNameExists){
+            if(userEmailExists){
+                request.setAttribute("emailExists", emailFound);
+                request.setAttribute("usernameAttempt", username);
+            }else{
+                request.setAttribute("usernameExists", usernameFound);
+                request.setAttribute("emailAttempt", email);
+            }
+            request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
+        }
+
     }
 }

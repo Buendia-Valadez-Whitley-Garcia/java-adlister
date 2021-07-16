@@ -33,7 +33,6 @@ public class MySQLReviewsDao implements Reviews{
         try{
             stmt = connection.prepareStatement("SELECT * FROM reviews");
 
-
             ResultSet rs = stmt.executeQuery();
 
             return createReviewListFromRs(rs);
