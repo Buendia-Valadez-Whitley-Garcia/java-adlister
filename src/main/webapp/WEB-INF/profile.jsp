@@ -17,10 +17,6 @@
                 <h2>${reviews.title}</h2>
                 <p>${reviews.review}</p>
         </c:forEach>
-
-
-
-
     </div>
 
 </body>

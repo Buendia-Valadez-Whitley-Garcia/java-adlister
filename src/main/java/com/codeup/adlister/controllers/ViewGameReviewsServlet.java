@@ -2,6 +2,8 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Game;
+import com.codeup.adlister.models.Review;
+import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/game/reviews")
 public class ViewGameReviewsServlet extends HttpServlet {
@@ -19,10 +22,12 @@ public class ViewGameReviewsServlet extends HttpServlet {
             resp.sendRedirect("/games");
             return;
         }
+        Game game = (Game) req.getSession().getAttribute("game");
+        List<Review> results = DaoFactory.getReviewsDao().gameReviews(game.getId());
+        req.setAttribute("reviews", results);
         req.getRequestDispatcher("/WEB-INF/games/review.jsp").forward(req, resp);
 
         //we need to make sure that a user cant post a review unless they are logged in.
-        //Refactor the review page to host reviews based on game ID
         //format the page so it looks nice
         //check if the user that's logged into the session has a review on that game and display a delete or edit button for that post
         //      if true (or handle this in the profile)

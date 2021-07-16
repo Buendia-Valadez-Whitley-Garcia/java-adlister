@@ -26,13 +26,11 @@ public class MySQLReviewsDao implements Reviews{
     }
 
 //    ============= View all reviews by Game ID =============
-    public List<Review> gameReviews(Game game) {
-        String sql = "SELECT * FROM reviews WHERE game_id = VALUES(?)";
+    public List<Review> gameReviews(Long game) {
+        String sql = "SELECT * FROM reviews WHERE game_id = ?";
         try {
-          
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setLong(1, game.getId());
-
+            stmt.setLong(1, game);
             ResultSet rs = stmt.executeQuery();
             return createReviewListFromRs(rs);
         } catch(SQLException e){
