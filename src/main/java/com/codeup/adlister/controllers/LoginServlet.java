@@ -26,7 +26,12 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         User user = DaoFactory.getUsersDao().findByUsername(username);
 
+        String wrongUsername = "<span style=\"color:red\">* Username does not exist <span>";
+        String passwordConflict = "<span style=\"color:red\">* Doesn't match <span>";
+
         if (user == null) {
+            request.setAttribute("doesntExist", wrongUsername);
+            request.setAttribute("username", username);
             response.sendRedirect("/login");
             return;
         }
@@ -37,7 +42,16 @@ public class LoginServlet extends HttpServlet {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("/profile");
         } else {
+            request.setAttribute("wrongPassword", passwordConflict);
+            request.setAttribute("username", username);
             response.sendRedirect("/login");
         }
+
+
+
+
+
+
     }
 }
+

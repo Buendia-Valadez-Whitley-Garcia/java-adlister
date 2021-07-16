@@ -50,8 +50,8 @@ public class RegisterServlet extends HttpServlet {
             passwordsDontMatch = false;
         }
 
-        String usernameFound = "<span style=\"color:red\">* already exists<span>";
-        String emailFound = "<span style=\"color:red\">* already exists<span>";
+
+        String exists = "<span style=\"color:red\">* already exists<span>";
         String passwordConflict = "<span style=\"color:red\">* Doesn't match<span>";
 
         // create and save a new user
@@ -60,16 +60,16 @@ public class RegisterServlet extends HttpServlet {
             DaoFactory.getUsersDao().insert(user);
             response.sendRedirect("/login");
         }else if(userEmailExists && userNameExists && passwordsDontMatch){
-            request.setAttribute("usernameExists", usernameFound);
-            request.setAttribute("emailExists", emailFound);
+            request.setAttribute("usernameExists", exists);
+            request.setAttribute("emailExists", exists);
             request.setAttribute("passwordConflict", passwordConflict);
             request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
         }else if(userEmailExists || userNameExists){
             if(userEmailExists){
-                request.setAttribute("emailExists", emailFound);
+                request.setAttribute("emailExists", exists);
                 request.setAttribute("usernameAttempt", username);
             }else{
-                request.setAttribute("usernameExists", usernameFound);
+                request.setAttribute("usernameExists", exists);
                 request.setAttribute("emailAttempt", email);
             }
             request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
