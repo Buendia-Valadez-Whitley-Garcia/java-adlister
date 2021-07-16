@@ -26,7 +26,7 @@ public class MySQLReviewsDao implements Reviews{
     }
 
 //    ============= View all reviews by Game ID =============
-    public List<Review> all(Game game) {
+    public List<Review> gameReviews(Game game) {
         String sql = "SELECT * FROM reviews WHERE game_id = VALUES(?)";
         try {
           
@@ -80,11 +80,11 @@ public class MySQLReviewsDao implements Reviews{
 
 //    ======================= Select all reviews by user ID ==================
     @Override
-    public List<Review> all(User user) {
-        String sql = "SELECT * FROM reviews WHERE user_id = VALUES(?)";
+    public List<Review> all(Long user) {
+        String sql = "SELECT * FROM reviews WHERE user_id = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setLong(1, user.getId());
+            stmt.setLong(1, user);
             ResultSet rs = stmt.executeQuery();
             return createReviewListFromUsers(rs);
         } catch(SQLException e){
