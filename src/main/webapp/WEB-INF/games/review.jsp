@@ -14,14 +14,18 @@
         <p>"Console: "${sessionScope.games.console}</p>
         <p>"Genre: "${sessionScope.games.genre}</p>
         <p>"Release Year: "${sessionScope.games.release_date}</p>
-        <p>${sessionScope.reviews.review}</p>
-<%-- trying to figure out how to pull the information from the sessions game review --%>
+
+    <c:forEach var="review" items="${reviews}">
+<%--        <p>"User: ${}</p>--%>
+        <p>"Title: ${review.title}</p>
+        <p>"Review: ${review.review}</p>
+    </c:forEach>
     </div>
 
 <form action="/games/review" method="post">
     <div class="form-group">
         <label for="review">Leave Review</label>
-        <textarea id="review" name="review" class="form-control" type="text"></textarea>
+        <textarea id="review" name="review" class="form-control"></textarea>
     </div>
     <input type="submit" class="btn btn-block btn-primary">
 </form>
