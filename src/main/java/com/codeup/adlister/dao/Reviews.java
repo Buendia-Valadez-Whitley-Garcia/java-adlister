@@ -7,7 +7,7 @@ import com.codeup.adlister.models.User;
 import java.util.List;
 
 public interface Reviews {
-    List<Review> all(Game game);
+    List<Review> gameReviews(Game game);
     Long insert(Review review);
-    List<Review> all(User user);
+    List<Review> all(Long user);
 }
