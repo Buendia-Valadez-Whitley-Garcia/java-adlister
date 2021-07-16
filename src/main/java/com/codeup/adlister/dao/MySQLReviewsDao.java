@@ -25,7 +25,7 @@ public class MySQLReviewsDao implements Reviews{
         }
     }
 
-//    ============= View all reviews by Game ID
+//    ============= View all reviews by Game ID =============
     public List<Review> all(Game game) {
         String sql = "SELECT * FROM reviews WHERE game_id = VALUES(?)";
         try {
@@ -37,8 +37,6 @@ public class MySQLReviewsDao implements Reviews{
             throw new RuntimeException("Error generating reviews.");
         }
     }
-
-
     public List<Review> createReviewListFromRs(ResultSet rs) throws SQLException {
         List<Review> reviews = new ArrayList<>();
         while(rs.next()){
@@ -49,6 +47,7 @@ public class MySQLReviewsDao implements Reviews{
 
     public Review stringToReview(ResultSet rs) throws SQLException{
         return new Review(
+                rs.getLong("user_id"),
                 rs.getLong("game_id"),
                 rs.getString("title"),
                 rs.getString("review")
@@ -57,7 +56,7 @@ public class MySQLReviewsDao implements Reviews{
     }
 
 
-//    ============ Insert new review into the database
+//    ============ Insert new review into the database ==============
     @Override
     public Long insert(Review review) {
         try{
@@ -77,7 +76,7 @@ public class MySQLReviewsDao implements Reviews{
     }
 
 
-//    ======================= Select all reviews by user ID
+//    ======================= Select all reviews by user ID ==================
     @Override
     public List<Review> all(User user) {
         String sql = "SELECT * FROM reviews WHERE user_id = VALUES(?)";
@@ -93,9 +92,19 @@ public class MySQLReviewsDao implements Reviews{
     public List<Review> createReviewListFromUsers(ResultSet rs) throws SQLException {
         List<Review> userReviews = new ArrayList<>();
         while(rs.next()){
-            userReviews.add(stringToReview(rs));
+            userReviews.add(userStringToReview(rs));
         }
         return userReviews;
+    }
+
+    public Review userStringToReview(ResultSet rs) throws SQLException{
+        return new Review(
+                rs.getLong("user_id"),
+                rs.getLong("game_id"),
+                rs.getString("title"),
+                rs.getString("review")
+        );
+
     }
 
 }
