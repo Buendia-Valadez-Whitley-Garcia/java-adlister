@@ -73,10 +73,8 @@ public class MySQLGamesDao implements Games{
             stmt.setString(4, game.getConsole());
             stmt.setString(5, game.getGenre());
             stmt.setLong(6, game.getReleaseDate());
-
             stmt.executeUpdate();
-
-            ResultSet rs = stmt.getResultSet();
+            ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             return rs.getLong(1);
         }catch (SQLException e){

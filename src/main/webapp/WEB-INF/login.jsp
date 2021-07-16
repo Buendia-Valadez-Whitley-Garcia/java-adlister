@@ -12,10 +12,10 @@
         <form action="/login" method="POST">
             <div class="form-group">
                 <label for="username">Username ${doesntExist}</label>
-                <input id="username" value="${username}" name="username" class="form-control" type="text">
+                <input id="username" value="${passBackUsername}" name="username" class="form-control" type="text">
             </div>
             <div class="form-group">
-                <label for="password">Password ${passwordExists}</label>
+                <label for="password">Password ${wrongPassword}</label>
                 <input id="password" name="password" class="form-control" type="password">
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Log In">
