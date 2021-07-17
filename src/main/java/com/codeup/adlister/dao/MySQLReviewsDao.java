@@ -60,18 +60,19 @@ public class MySQLReviewsDao implements Reviews{
     @Override
     public Long insert(Review review) {
         try{
-            String insertGameQuery = "INSERT INTO reviews(user_id, title, review) VALUES (?, ?, ?)";
+            String insertGameQuery = "INSERT INTO reviews(user_id, game_id, title, review) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(insertGameQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setLong(1, review.getId());
-            stmt.setString(2, review.getTitle());
-            stmt.setString(3, review.getReview());
+            stmt.setLong(2, review.getGame_id());
+            stmt.setString(3, review.getTitle());
+            stmt.setString(4, review.getReview());
             stmt.executeUpdate();
 
-            ResultSet rs = stmt.getResultSet();
+            ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             return rs.getLong(1);
         }catch (SQLException e){
-            throw new RuntimeException("Error inserting review into database");
+            throw new RuntimeException("Error inserting review into database", e);
         }
     }
 

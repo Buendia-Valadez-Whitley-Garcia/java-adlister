@@ -10,11 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
-@WebServlet("/game/reviews")
+@WebServlet(name = "controllers.ViewGameReviewServlet", urlPatterns ="/game/reviews")
 public class ViewGameReviewsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,6 +22,7 @@ public class ViewGameReviewsServlet extends HttpServlet {
             resp.sendRedirect("/games");
             return;
         }
+
         Game game = (Game) req.getSession().getAttribute("game");
         List<Review> results = DaoFactory.getReviewsDao().gameReviews(game.getId());
         req.setAttribute("reviews", results);
@@ -35,8 +36,18 @@ public class ViewGameReviewsServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //this will handle all review posts made from the game page
-        //get user from session
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        User user = (User) req.getSession().getAttribute("user");
+        Game game = (Game) req.getSession().getAttribute("game");
+        String newTitle = req.getParameter("newTitle");
+        String newReview = req.getParameter("newReview");
+        Review review = new Review (
+            user.getId(),
+            game.getId(),
+            newTitle,
+            newReview
+        );
+        DaoFactory.getReviewsDao().insert(review);
+        resp.sendRedirect("/game/reviews");
     }
 }

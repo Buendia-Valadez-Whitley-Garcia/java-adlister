@@ -8,26 +8,36 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
+<div class="container">
     <div class="games">
-        <h1>Game Review</h1>
+        <h2>Game Overview</h2>
         <h2>${sessionScope.game.title}</h2>
         <p>"Description: "${sessionScope.game.description}</p>
         <p>"Console: "${sessionScope.game.console}</p>
         <p>"Genre: "${sessionScope.game.genre}</p>
         <p>"Release Year: "${sessionScope.game.releaseDate}</p>
 
-        <c:forEach var="reviews" items="${reviews}">
-            <h2>${reviews.title}</h2>
-            <p>${reviews.review}</p>
-        </c:forEach>
+        <h3>Reviews submitted by our users</h3>
+        <hr style="margin: 0px;">
+        <div class="card" style="padding: 30px;">
+            <c:forEach var="reviews" items="${reviews}">
+                <h4>${reviews.title}</h4>
+                <p>${reviews.review}</p>
+                <hr style="margin: auto; width: 800px">
+            </c:forEach>
+        </div>
     </div>
 
-    <form action="/games/review" method="post">
+
+    <h3>Want to submit a review?</h3>
+    <hr style="margin: 0px;">
+    <form action="/game/reviews" method="post">
         <div class="form-group">
-            <label for="review">Leave Review</label>
-            <textarea id="review" name="review" class="form-control"></textarea>
+            <textarea id="title" name="newTitle" class="form-control" style="width: 450px; height: 50px; margin: 10px;" placeholder="Enter title here"></textarea>
+            <textarea id="review" name="newReview" class="form-control" style="width: 650px; height: 150px; margin: 10px;" placeholder="Please enter your review"></textarea>
         </div>
         <input type="submit" class="btn btn-block btn-primary">
     </form>
+</div>
 </body>
 </html>
