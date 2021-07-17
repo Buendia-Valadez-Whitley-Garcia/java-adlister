@@ -31,13 +31,24 @@
 
     <h3>Want to submit a review?</h3>
     <hr style="margin: 0px;">
-    <form action="/game/reviews" method="post">
-        <div class="form-group">
-            <textarea id="title" name="newTitle" class="form-control" style="width: 450px; height: 50px; margin: 10px;" placeholder="Enter title here"></textarea>
-            <textarea id="review" name="newReview" class="form-control" style="width: 650px; height: 150px; margin: 10px;" placeholder="Please enter your review"></textarea>
-        </div>
-        <input type="submit" class="btn btn-block btn-primary">
-    </form>
+    <c:choose>
+        <c:when test="${sessionScope.user != null}">
+            <form action="/game/reviews" method="post">
+                <div class="form-group">
+                    <textarea id="title" name="newTitle" class="form-control" style="width: 450px; height: 50px; margin: 10px;" placeholder="Enter title here"></textarea>
+                    <textarea id="review" name="newReview" class="form-control" style="width: 650px; height: 150px; margin: 10px;" placeholder="Please enter your review"></textarea>
+                </div>
+                <input type="submit" class="btn btn-block btn-primary">
+            </form>
+        </c:when>
+        <c:otherwise>
+            <div>
+                <h4>Please login to post a review.</h4>
+                <button><a href="/login">Login</a></button>
+            </div>
+        </c:otherwise>
+    </c:choose>
+
 </div>
 </body>
 </html>
