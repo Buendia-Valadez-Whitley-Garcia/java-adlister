@@ -33,10 +33,13 @@
         <h2>Here are your reviews:</h2>
         <hr style="margin: 0px;">
         <div class="card" style="padding: 30px; margin: 0px;">
+            <form action="/profile" method="post">
             <c:forEach var="reviews" items="${reviews}">
                 <h2>${reviews.title}</h2>
                 <p>${reviews.review}</p>
+                <button name="edit" value="${reviews.id}" type="submit">Edit</button>
             </c:forEach>
+            </form>
         </div>
     </div>
 </body>

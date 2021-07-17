@@ -45,6 +45,20 @@ public class MySQLReviewsDao implements Reviews{
         return reviews;
     }
 
+    @Override
+    public Review findByID(Long id){
+        String query = "SELECT * FROM reviews WHERE id = ? LIMIT 1";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return stringToReview(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a review with that id", e);
+        }
+    }
+
     public Review stringToReview(ResultSet rs) throws SQLException{
         return new Review(
                 rs.getLong("user_id"),
@@ -117,6 +131,7 @@ public class MySQLReviewsDao implements Reviews{
 
     public Review userStringToReview(ResultSet rs) throws SQLException{
         return new Review(
+                rs.getLong("id"),
                 rs.getLong("user_id"),
                 rs.getLong("game_id"),
                 rs.getString("title"),
