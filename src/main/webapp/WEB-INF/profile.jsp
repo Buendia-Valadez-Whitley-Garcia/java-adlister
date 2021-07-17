@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Your Profile" />
     </jsp:include>
@@ -10,14 +9,35 @@
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
+
     <div class="container">
         <h1>Welcome, ${sessionScope.user.username}!</h1>
+        <h2>User Tools:</h2><br>
+        <hr style="margin: 0px;">
+        <i class="far fa-envelope"></i> View Messages •
+        <i class="fad fa-user-friends"></i> View Games •
+        <i class="fas fa-user-slash"></i> Banned Members •
+        <i class="fal fa-chalkboard-teacher"></i> Message Board •
+        <i class="far fa-file-export"></i> Approve Posts •
+
+        <br>
+        <h2>Welcome to your Gamelister Hub!</h2><br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur.
         <h2>Here are your reviews:</h2>
-        <c:forEach var="reviews" items="${reviews}">
+        <hr style="margin: 0px;">
+        <div class="card" style="padding: 30px; margin: 0px;">
+            <c:forEach var="reviews" items="${reviews}">
                 <h2>${reviews.title}</h2>
                 <p>${reviews.review}</p>
-        </c:forEach>
+            </c:forEach>
+        </div>
     </div>
-
 </body>
 </html>
