@@ -11,4 +11,5 @@ public interface Reviews {
     Long insert(Review review);
     List<Review> all(Long user);
     void editReview(String title, String review, User user);
+    Review findByID(Long id);
 }
