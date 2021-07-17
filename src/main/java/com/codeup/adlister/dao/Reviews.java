@@ -10,4 +10,5 @@ public interface Reviews {
     List<Review> gameReviews(Long game);
     Long insert(Review review);
     List<Review> all(Long user);
+    void editReview(String title, String review, User user);
 }

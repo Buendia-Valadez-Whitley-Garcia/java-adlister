@@ -55,6 +55,23 @@ public class MySQLReviewsDao implements Reviews{
 
     }
 
+    @Override
+    public void editReview(String title, String review, User user){
+        try{
+            String insertGameQuery = "UPDATE reviews SET title = ?, review = ? WHERE user_id = ?;";
+            PreparedStatement stmt = connection.prepareStatement(insertGameQuery, Statement.RETURN_GENERATED_KEYS);
+
+            stmt.setString(1, title);
+            stmt.setString(2, review);
+            stmt.setLong(3, user.getId());
+
+            stmt.executeUpdate();
+
+        }catch (SQLException e){
+            throw new RuntimeException("Error inserting review into database", e);
+        }
+    }
+
 
 //    ============ Insert new review into the database ==============
     @Override

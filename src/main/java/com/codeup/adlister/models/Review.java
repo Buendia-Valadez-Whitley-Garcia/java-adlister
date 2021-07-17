@@ -2,11 +2,19 @@ package com.codeup.adlister.models;
 
 public class Review {
 
+    private long id;
     private long game_id;
     private long user_id;
     private String title;
     private String review;
 
+    public Review(long id, long user_id, long game_id, String title, String review) {
+        this.id = id;
+        this.user_id = user_id;
+        this.game_id = game_id;
+        this.title = title;
+        this.review = review;
+    }
 
     public Review(long user_id, long game_id, String title, String review) {
         this.user_id = user_id;
@@ -14,10 +22,11 @@ public class Review {
         this.title = title;
         this.review = review;
     }
-    public Review(){
 
+    public long getId(){
+        return id;
     }
-    public long getId() {
+    public long getUser_id() {
         return user_id;
     }
     public long getGame_id() {
