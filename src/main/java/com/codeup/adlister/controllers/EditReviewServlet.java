@@ -35,14 +35,9 @@ public class EditReviewServlet extends HttpServlet {
         //reset the session "review" attribute to be null
 
         Long reviewID = (Long) req.getSession().getAttribute("reviewID");
-        String stringID = req.getParameter("id");
 
         String title = req.getParameter("updateTitle");
         String review = req.getParameter("updateReview");
-
-        System.out.println(title);
-        System.out.println(review);
-        System.out.println(reviewID);
 
         DaoFactory.getReviewsDao().editReview(title, review, reviewID);
         req.getSession().setAttribute("review", null);
