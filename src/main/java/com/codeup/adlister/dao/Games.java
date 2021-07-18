@@ -8,4 +8,5 @@ public interface Games {
     Long insert(Game game);
     List<Game> searchByTitle(String query);
     Game findByID(Long id);
+    List<Game> findByGenre(String genre);
 }

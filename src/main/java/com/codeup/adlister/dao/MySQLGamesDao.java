@@ -1,8 +1,6 @@
 package com.codeup.adlister.dao;
-
 import com.codeup.adlister.models.Game;
 import com.mysql.jdbc.Driver;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,18 +20,12 @@ public class MySQLGamesDao implements Games{
             throw new RuntimeException("Error connecting to database (games_constructor)");
         }
     }
-
-    //all is going to return the entire list of ads so we can display them on the page
-    //We will need to create a SQL command that will access the games table and show us the contents
-    //prepared statements can throw SQL exceptions so we will need to handle this
     @Override
     public List<Game> all() {
         PreparedStatement stmt = null;
         try{
             stmt = connection.prepareStatement("SELECT * FROM games;");
-            //we must turn the SQL statement into a set of results that we can view
             ResultSet rs = stmt.executeQuery();
-            //we need to turn the result set into a List so we can send that to the user.
             return createGameListFromRs(rs);
         }catch(SQLException e){
             throw new RuntimeException("Error generating games.");
@@ -75,7 +67,6 @@ public class MySQLGamesDao implements Games{
         }
     }
 
-    //We need to create an insert string in order to push user input into the database
     @Override
     public Long insert(Game game) {
         try{
@@ -130,4 +121,51 @@ public class MySQLGamesDao implements Games{
             throw new RuntimeException("OOPS! Error retrieving all games...", e);
         }
     }
+
+
+//    =======================SELECT by genre===================
+
+    @Override
+    public List<Game> findByGenre(String game) {
+        String sql = "SELECT * FROM games WHERE genre = ?;";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, game);
+            ResultSet rs = stmt.executeQuery();
+            return createGenreList(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error generating list", e);
+        }
+    }
+
+        public List<Game> createGenreList(ResultSet rs) throws SQLException {
+            List<Game> game = new ArrayList<>();
+            while(rs.next()){
+                game.add(stringToGenre(rs));
+            }
+            return game;
+        }
+
+    public Game stringToGenre(ResultSet rs) throws SQLException{
+        return new Game(
+                rs.getLong("id"),
+                rs.getLong("user_id"),
+                rs.getString("title"),
+                rs.getString("description"),
+                rs.getString("console"),
+                rs.getString("genre"),
+                rs.getLong("release_date")
+        );
+
+    }
+
+
+
+
+
+
+
+
+
+
 }
