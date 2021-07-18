@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/reviews/edit")
-public class EditReviewDao extends HttpServlet {
+public class EditReviewServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //get info then pass it to the form
@@ -24,6 +24,7 @@ public class EditReviewDao extends HttpServlet {
 
         req.setAttribute("title", review.getTitle());
         req.setAttribute("review", review.getReview());
+
         req.getRequestDispatcher("/WEB-INF/games/edit.jsp").forward(req, resp);
 
     }
@@ -32,11 +33,13 @@ public class EditReviewDao extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //handle information coming from the jsp and pass it to the edit review method in the Dao
         //reset the session "review" attribute to be null
-        User user = (User)req.getSession().getAttribute("user");
+
+        Long reviewID = (Long) req.getSession().getAttribute("reviewID");
+
         String title = req.getParameter("updateTitle");
         String review = req.getParameter("updateReview");
 
-        DaoFactory.getReviewsDao().editReview(title, review, user);
+        DaoFactory.getReviewsDao().editReview(title, review, reviewID);
         req.getSession().setAttribute("review", null);
         resp.sendRedirect("/profile");
 

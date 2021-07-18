@@ -35,6 +35,7 @@ public class ViewProfileServlet extends HttpServlet {
 
         Review review = DaoFactory.getReviewsDao().findByID(reviewID);
 
+        req.getSession().setAttribute("reviewID", reviewID);
         req.getSession().setAttribute("review", review);
         resp.sendRedirect("/reviews/edit");
 

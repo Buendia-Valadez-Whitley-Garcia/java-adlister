@@ -70,14 +70,14 @@ public class MySQLReviewsDao implements Reviews{
     }
 
     @Override
-    public void editReview(String title, String review, User user){
+    public void editReview(String title, String review, Long id){
         try{
-            String insertGameQuery = "UPDATE reviews SET title = ?, review = ? WHERE user_id = ?;";
+            String insertGameQuery = "UPDATE reviews SET title = ?, review = ? WHERE id = ?;";
             PreparedStatement stmt = connection.prepareStatement(insertGameQuery, Statement.RETURN_GENERATED_KEYS);
 
             stmt.setString(1, title);
             stmt.setString(2, review);
-            stmt.setLong(3, user.getId());
+            stmt.setLong(3, id);
 
             stmt.executeUpdate();
 
@@ -93,7 +93,7 @@ public class MySQLReviewsDao implements Reviews{
         try{
             String insertGameQuery = "INSERT INTO reviews(user_id, game_id, title, review) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(insertGameQuery, Statement.RETURN_GENERATED_KEYS);
-            stmt.setLong(1, review.getId());
+            stmt.setLong(1, review.getUser_id());
             stmt.setLong(2, review.getGame_id());
             stmt.setString(3, review.getTitle());
             stmt.setString(4, review.getReview());
