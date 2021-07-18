@@ -31,53 +31,34 @@ public class CreateGameServlet extends HttpServlet {
         String releaseDate = request.getParameter("release_date");
         User user = (User)request.getSession().getAttribute("user");
 
-
+        String gameExists = "<span style=\"color:red\">* already exists<span>";
         String noStuff = "<span style=\"color:red\">* please fill <span>";
 
+        boolean inputHasErrors = title.isEmpty() || description.isEmpty() || releaseDate.isEmpty();
 
-
-        if (title == null) {
-            request.setAttribute("empty", noStuff);
-            request.setAttribute("passBackDescription", description);
-            request.setAttribute("passBackDate", releaseDate);
-            request.getRequestDispatcher("WEB-INF/create.jsp").forward(request, response);
+        if(inputHasErrors){
+            response.sendRedirect("/games/create");
             return;
         }
 
-        //create values that will determine if a user can create a game
-        boolean titleExists = true;
+        boolean gameTitleExists = true;
+        System.out.println(title);
+        Game gameTitleTest = DaoFactory.getGamesDao().findByTitle(title);
 
-
-        //test to see if those games already exist
-        Game titleTest = (Game)DaoFactory.getGamesDao().searchByTitle(title);
-
-        if(titleTest == null){
-            titleExists = false;
-
+        if(gameTitleTest == null){
+            gameTitleExists = false;
         }
 
-        String gameExists = "<span style=\"color:red\">* already exists<span>";
-
         //create and save a new game
-        if(!titleExists){
+        if(!gameTitleExists){
             Game game = new Game(user.getId(), title, description, console, genre, releaseDate);
             DaoFactory.getGamesDao().insert(game);
             response.sendRedirect("/games");
-            } else if (titleExists){
+        } else if(gameTitleExists){
             request.setAttribute("titleExists", gameExists);
-            request.getRequestDispatcher("WEB-INF/create.jsp");
+            request.getRequestDispatcher("/WEB-INF/games/create.jsp").forward(request, response);
         }
 
-//        User user = (User) request.getSession().getAttribute("user");
-//        Game game = new Game(
-//            user.getId(),
-//            request.getParameter("title"),
-//            request.getParameter("description"),
-//            request.getParameter("console"),
-//            request.getParameter("genre"),
-//            request.getParameter("release_date")
-//        );
-//        DaoFactory.getGamesDao().insert(game);
-//        response.sendRedirect("/games");
+
     }
 }

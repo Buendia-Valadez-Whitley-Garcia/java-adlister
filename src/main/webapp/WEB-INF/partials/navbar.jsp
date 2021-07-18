@@ -18,6 +18,7 @@
                 <c:otherwise>
                     <li><a href="/games/create">Add a game</a></li>
                     <li><a href="/logout">Logout</a></li>
+                    <li><a href="/profile">Profile</a></li>
                 </c:otherwise>
             </c:choose>
         </ul>

@@ -1,5 +1,6 @@
 package com.codeup.adlister.dao;
 import com.codeup.adlister.models.Game;
+import com.codeup.adlister.models.User;
 import com.mysql.jdbc.Driver;
 import java.sql.*;
 import java.util.ArrayList;
@@ -88,6 +89,9 @@ public class MySQLGamesDao implements Games{
     }
 
     private Game extractGame(ResultSet rs) throws SQLException {
+        if(! rs.next()){
+            return null;
+        }
         return new Game(
                 rs.getLong("id"),
                 rs.getLong("user_id"),
@@ -119,6 +123,18 @@ public class MySQLGamesDao implements Games{
             return createGamesFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("OOPS! Error retrieving all games...", e);
+        }
+    }
+
+    @Override
+    public Game findByTitle(String title) {
+        String query = "SELECT * FROM games WHERE title = ? LIMIT 1";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, title);
+            return extractGame(stmt.executeQuery());
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a game by title", e);
         }
     }
 
