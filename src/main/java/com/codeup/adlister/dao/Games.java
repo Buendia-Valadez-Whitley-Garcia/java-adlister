@@ -9,4 +9,5 @@ public interface Games {
     List<Game> searchByTitle(String query);
     Game findByID(Long id);
     List<Game> findByGenre(String genre);
+    Game findByTitle(String title);
 }
