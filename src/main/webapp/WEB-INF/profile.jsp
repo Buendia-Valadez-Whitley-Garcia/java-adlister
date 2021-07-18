@@ -35,9 +35,14 @@
         <div class="card" style="padding: 30px; margin: 0px;">
             <form action="/profile" method="post">
             <c:forEach var="reviews" items="${reviews}">
-                <h2>${reviews.title}</h2>
-                <p>${reviews.review}</p>
-                <button name="edit" value="${reviews.id}" type="submit">Edit</button>
+                <div class="card">
+                    <h5 class="card-header">${reviews.title}</h5>
+                    <div class="card-body">
+                        <p class="card-text">${reviews.review}</p>
+                        <button name="edit" value="${reviews.id}" type="submit" class="btn btn-info" >Edit</button>
+                        <button name="delete" value="${reviews.id}" type="submit" class="btn btn-danger" >Delete</button>
+                    </div>
+                </div>
             </c:forEach>
             </form>
         </div>
