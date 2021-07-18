@@ -72,8 +72,8 @@ public class MySQLReviewsDao implements Reviews{
     @Override
     public void editReview(String title, String review, Long id){
         try{
-            String insertGameQuery = "UPDATE reviews SET title = ?, review = ? WHERE id = ?;";
-            PreparedStatement stmt = connection.prepareStatement(insertGameQuery, Statement.RETURN_GENERATED_KEYS);
+            String updateQuery = "UPDATE reviews SET title = ?, review = ? WHERE id = ?;";
+            PreparedStatement stmt = connection.prepareStatement(updateQuery, Statement.RETURN_GENERATED_KEYS);
 
             stmt.setString(1, title);
             stmt.setString(2, review);
@@ -84,6 +84,21 @@ public class MySQLReviewsDao implements Reviews{
         }catch (SQLException e){
             throw new RuntimeException("Error inserting review into database", e);
         }
+    }
+
+    public void deleteReview(Long id){
+        try{
+            String deleteQuery = "DELETE FROM reviews WHERE id = ?;";
+            PreparedStatement stmt = connection.prepareStatement(deleteQuery, Statement.RETURN_GENERATED_KEYS);
+
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting that review");
+        }
+
+
     }
 
 

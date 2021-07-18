@@ -30,14 +30,23 @@ public class ViewProfileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String stringReviewID = req.getParameter("edit");
-        Long reviewID = Long.parseLong(stringReviewID);
+        if(req.getParameter("edit") != null){
+            String stringReviewID = req.getParameter("edit");
+            Long reviewID = Long.parseLong(stringReviewID);
 
-        Review review = DaoFactory.getReviewsDao().findByID(reviewID);
+            Review review = DaoFactory.getReviewsDao().findByID(reviewID);
 
-        req.getSession().setAttribute("reviewID", reviewID);
-        req.getSession().setAttribute("review", review);
-        resp.sendRedirect("/reviews/edit");
+            req.getSession().setAttribute("reviewID", reviewID);
+            req.getSession().setAttribute("review", review);
+            resp.sendRedirect("/reviews/edit");
+        }else if( req.getParameter("delete") != null){
+            String stringReviewID = req.getParameter("delete");
+            Long reviewID = Long.parseLong(stringReviewID);
+
+            DaoFactory.getReviewsDao().deleteReview(reviewID);
+            resp.sendRedirect("/profile");
+        }
+
 
     }
 }
