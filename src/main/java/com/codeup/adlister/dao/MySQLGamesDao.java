@@ -118,18 +118,18 @@ public class MySQLGamesDao implements Games{
     private List<Game> createGamesFromResults(ResultSet rs) throws SQLException {
         List<Game> games = new ArrayList<>();
         while (rs.next()) {
-            games.add(extractGame(rs));
+            games.add(alwaysExtractGame(rs));
         }
         return games;
     }
 
+    //for searchbar function
     @Override
     public List<Game> searchByTitle(String query) {
         String sql = "SELECT * FROM games WHERE title LIKE ?;";
         String searchTermWithWildcards = "%" + query + "%";
-        PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, searchTermWithWildcards);
             ResultSet rs = stmt.executeQuery();
             return createGamesFromResults(rs);
@@ -138,6 +138,7 @@ public class MySQLGamesDao implements Games{
         }
     }
 
+    //for create game check
     @Override
     public Game findByTitle(String title) {
         String query = "SELECT * FROM games WHERE title = ? LIMIT 1";
