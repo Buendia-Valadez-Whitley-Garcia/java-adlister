@@ -16,7 +16,7 @@
         </div>
         <div class="form-group">
             <label for="description">Description ${descriptionEmpty}</label>
-            <textarea id="description" name="description" class="form-control" value="${descriptionAttempt}"></textarea>
+            <textarea id="description" name="description" class="form-control">${descriptionAttempt}</textarea>
         </div>
         <div class="form-group">
             <label for="dropdownMenuButton">Console</label>
