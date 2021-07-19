@@ -11,19 +11,19 @@
         <h1>Please fill in your information.</h1>
         <form action="/register" method="post">
             <div class="form-group">
-                <label for="username">Username ${usernameExists} </label>
+                <label for="username">Username ${usernameExists} ${userEmpty}</label>
                 <input id="username" name="username" class="form-control" type="text" value="${usernameAttempt}">
             </div>
             <div class="form-group">
-                <label for="email">Email ${emailExists}</label>
+                <label for="email">Email ${emailExists} ${emailEmpty}</label>
                 <input id="email" name="email" class="form-control" type="text" value="${emailAttempt}">
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">Password ${passwordEmpty}</label>
                 <input id="password" name="password" class="form-control" type="password">
             </div>
             <div class="form-group">
-                <label for="confirm_password">Confirm Password ${passwordConflict}</label>
+                <label for="confirm_password">Confirm Password ${passwordConflict} </label>
                 <input id="confirm_password" name="confirm_password" class="form-control" type="password">
             </div>
             <input type="submit" class="btn btn-primary btn-block">

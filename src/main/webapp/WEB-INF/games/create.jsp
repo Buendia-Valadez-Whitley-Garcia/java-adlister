@@ -11,12 +11,12 @@
     <h1>Create a new Game</h1>
     <form action="/games/create" method="post">
         <div class="form-group">
-            <label for="title">Title ${titleExists}</label>
-            <input id="title" name="title" class="form-control" type="text">
+            <label for="title">Title ${titleExists} ${titleEmpty}</label>
+            <input id="title" name="title" class="form-control" type="text" value="${titleAttempt}">
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
-            <textarea id="description" name="description" class="form-control"></textarea>
+            <label for="description">Description ${descriptionEmpty}</label>
+            <textarea id="description" name="description" class="form-control" value="${descriptionAttempt}"></textarea>
         </div>
         <div class="form-group">
             <label for="dropdownMenuButton">Console</label>
@@ -47,8 +47,8 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="release-date" placeholder="year">Release date</label>
-            <input id="release-date" name="release_date" class="form-control" type="text">
+            <label for="release-date" placeholder="year">Release date ${releaseEmpty}</label>
+            <input id="release-date" name="release_date" class="form-control" type="text" value="${releaseAttempt}">
         </div>
         <input type="submit" class="btn btn-block btn-primary">
     </form>
