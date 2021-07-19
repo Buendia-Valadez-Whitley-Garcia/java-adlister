@@ -8,18 +8,16 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-
-
     <div class="container">
         <h1>Welcome, ${sessionScope.user.username}!</h1>
-        <h2>User Tools:</h2><br>
-        <hr style="margin: 0px;">
-        <i class="far fa-envelope"></i> View Messages •
-        <i class="fad fa-user-friends"></i> View Games •
-        <i class="fas fa-user-slash"></i> Banned Members •
-        <i class="fal fa-chalkboard-teacher"></i> Message Board •
-        <i class="far fa-file-export"></i> Approve Posts •
-
+        <h2>User Tools:</h2>
+        <hr style="margin: 0px;"><br>
+        <div class="well well-sm" style="width: 530px; margin: auto;">
+            <i class="far fa-envelope"></i> View Messages •
+            <i class="fad fa-user-friends"></i> View Games •
+            <i class="fal fa-chalkboard-teacher"></i> Message Board •
+            <i class="far fa-file-export"></i> Approve Posts
+        </div>
         <br>
         <h2>Welcome to your Gamelister Hub!</h2><br>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -32,7 +30,7 @@
         esse cillum dolore eu fugiat nulla pariatur.
         <h2>Here are your reviews:</h2>
         <hr style="margin: 0px;">
-        <div class="card" style="padding: 30px; margin: 0px;">
+        <div class="card" style="padding: 30px; margin: 0px; width: 85vw">
             <form action="/profile" method="post">
             <c:forEach var="reviews" items="${reviews}">
                 <div class="card">

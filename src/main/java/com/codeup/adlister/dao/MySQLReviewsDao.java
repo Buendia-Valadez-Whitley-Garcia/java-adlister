@@ -1,17 +1,12 @@
 package com.codeup.adlister.dao;
-
-import com.codeup.adlister.models.Game;
 import com.codeup.adlister.models.Review;
-import com.codeup.adlister.models.User;
 import com.mysql.jdbc.Driver;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLReviewsDao implements Reviews{
     private Connection connection = null;
-
     public MySQLReviewsDao(Config config){
         try{
             DriverManager.registerDriver(new Driver());
@@ -21,7 +16,7 @@ public class MySQLReviewsDao implements Reviews{
                     config.getPassword()
             );
         }catch(SQLException e){
-            throw new RuntimeException("Error connecting to database (games_constructor)");
+            throw new RuntimeException("Error connecting to database");
         }
     }
 
@@ -121,7 +116,6 @@ public class MySQLReviewsDao implements Reviews{
             throw new RuntimeException("Error inserting review into database", e);
         }
     }
-
 
 //    ======================= Select all reviews by user ID ==================
     @Override
