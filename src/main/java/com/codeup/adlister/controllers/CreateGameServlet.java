@@ -31,8 +31,37 @@ public class CreateGameServlet extends HttpServlet {
         String releaseDate = request.getParameter("release_date");
         User user = (User)request.getSession().getAttribute("user");
 
+
+//             sticky for empty fields work, except for description because it is not an input field,
+//             it is a textarea.
+
+                boolean titleEmpty = title.isEmpty();
+                boolean descriptionEmpty = description.isEmpty();
+                boolean releaseEmpty = releaseDate.isEmpty();
+
+                String empty = "<span style=\"color:red\">*Empty field, please fill.<span>";
+                if(titleEmpty){
+                        request.setAttribute("titleEmpty", empty);
+                        request.setAttribute("descriptionAttempt", description);
+                        request.setAttribute("releaseAttempt", releaseDate);
+                     request.getRequestDispatcher("/WEB-INF/games/create.jsp").forward(request, response);
+                    }else if (descriptionEmpty){
+                        request.setAttribute("titleAttempt", title);
+                        request.setAttribute("descriptionEmpty", empty);
+                        request.setAttribute("releaseAttempt", releaseDate);
+                     request.getRequestDispatcher("/WEB-INF/games/create.jsp").forward(request, response);
+                    } else if(releaseEmpty){
+                     request.setAttribute("releaseEmpty", empty);
+                     request.setAttribute("titleAttempt", title);
+                     request.setAttribute("descriptionAttempt", description);
+                     request.getRequestDispatcher("/WEB-INF/games/create.jsp").forward(request, response);
+                 }
+
+
+
+
+
         String gameExists = "<span style=\"color:red\">* already exists<span>";
-        String noStuff = "<span style=\"color:red\">* please fill <span>";
 
         boolean inputHasErrors = title.isEmpty() || description.isEmpty() || releaseDate.isEmpty();
 

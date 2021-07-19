@@ -23,12 +23,36 @@ public class RegisterServlet extends HttpServlet {
         String passwordConfirmation = request.getParameter("confirm_password");
 
         // validate input
-        boolean inputHasErrors = username.isEmpty() || email.isEmpty() || password.isEmpty();
+//        boolean inputHasErrors = username.isEmpty() || email.isEmpty() || password.isEmpty();
+//
+//        if (inputHasErrors) {
+//            response.sendRedirect("/register");
+//        }
 
-        if (inputHasErrors) {
-            response.sendRedirect("/register");
-            return;
+//        Was trying to have a sticky when user doesnt input field,
+//        but it was still creating user in database.
+
+        boolean userEmpty = username.isEmpty();
+        boolean emailEmpty = email.isEmpty();
+        boolean passwordEmpty = password.isEmpty();
+
+        String empty = "<span style=\"color:red\">*Empty field, please fill.<span>";
+        if(userEmpty){
+                request.setAttribute("userEmpty", empty);
+                request.setAttribute("emailAttempt", email);
+            request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
+            } else if (emailEmpty){
+                request.setAttribute("emailEmpty", empty);
+                request.setAttribute("usernameAttempt", username);
+            request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
+            }
+        else if(passwordEmpty){
+            request.setAttribute("passwordEmpty", empty);
+            request.setAttribute("usernameAttempt", username);
+            request.setAttribute("emailAttempt", email);
+            request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
         }
+
 
         //create values that will determine if a user can create an account with certain details
         boolean userNameExists = true;
