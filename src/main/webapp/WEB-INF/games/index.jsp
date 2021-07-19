@@ -3,7 +3,7 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Viewing All The Ads" />
+        <jsp:param name="title" value="List of user submitted games" />
     </jsp:include>
     <style>
         .cardDisplay {
@@ -14,7 +14,6 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-
 <div class="container">
     <h2>Game selection:</h2>
     <form action="/genre" method="post">
