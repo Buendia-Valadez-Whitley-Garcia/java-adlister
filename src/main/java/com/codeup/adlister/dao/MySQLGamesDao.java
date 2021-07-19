@@ -62,7 +62,7 @@ public class MySQLGamesDao implements Games{
             stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
             rs.next();
-            return extractGame(rs);
+            return alwaysExtractGame(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error finding a game with that id", e);
         }
@@ -92,6 +92,18 @@ public class MySQLGamesDao implements Games{
         if(! rs.next()){
             return null;
         }
+        return new Game(
+                rs.getLong("id"),
+                rs.getLong("user_id"),
+                rs.getString("title"),
+                rs.getString("description"),
+                rs.getString("console"),
+                rs.getString("genre"),
+                rs.getLong("release_date")
+        );
+    }
+
+    private Game alwaysExtractGame(ResultSet rs) throws SQLException {
         return new Game(
                 rs.getLong("id"),
                 rs.getLong("user_id"),
