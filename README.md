@@ -51,3 +51,4 @@ For example:
 1. (Optionally) Check out the tag containing the solution for the exercise
 
    All of the tags that correspond to each exercise also have a tag suffixed with `-solution`
+# outfitterExpert
