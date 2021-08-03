@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<header>
+    <th:block th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="outfitterExpert.html">OutfitterExpert</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="outfitterExpert-AboutUs.html">About us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="outfitterExpert-team.html">Our Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Merch</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Blog</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <a class="navbar-icon" href="https://www.facebook.com/OutfitterExpert-101138728768176/"><i class="fab fa-facebook-square"></i></a>
+                <a class="navbar-icon" href="https://www.instagram.com/_outfitterexpert_/?igshid=7ltyhidmj6hd"><i class="fab fa-instagram"></i></a>
+                <a class="navbar-icon" href="https://www.linkedin.com/company/outfitter-expert"><i class="fab fa-linkedin"></i></a>
+            </form>
+        </div>
+    </nav>
+    </th:block>
+</header>
+</body>
+</html>

@@ -1,11 +1,9 @@
 # Adlister Project
 
-This is the project that we will be going through in the latter part of the Java
-curriculum.
+This is the project that we will be going through in the latter part of the Java curriculum.
 
 This repository contains various
-[tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging) that correspond to
-each lesson we will cover.
+[tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging) that correspond to each lesson we will cover.
 
 ## Setup and Workflow
 
@@ -15,18 +13,17 @@ each lesson we will cover.
 
 As we progress through the java lessons, for each exercise you should:
 
-0. Make sure all of your previous work is committed, and your working directory
-   is clean.
+0. Make sure all of your previous work is committed, and your working directory is clean.
 
     ```
     git status
     ```
 
-    This is good practice in general before manipulating a git repository
+   This is good practice in general before manipulating a git repository
 
 1. Checkout the corresponding tag
 
-    For example:
+   For example:
 
     ```
     git checkout servlets
@@ -53,5 +50,4 @@ For example:
 
 1. (Optionally) Check out the tag containing the solution for the exercise
 
-    All of the tags that correspond to each exercise also have a tag suffixed
-    with `-solution`
+   All of the tags that correspond to each exercise also have a tag suffixed with `-solution`

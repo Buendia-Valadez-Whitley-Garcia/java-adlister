@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>OutfitterExpert</title>
+    <th:block th:include="partials/styles.html :: styles"/>
+</head>
+<body>
+<th:block th:include="partials/navbar.html :: navbar"></th:block>
+<section class="video-container center-vh">
+    <video autoplay muted loop class="card puppiness">
+        <source src="partials/img/puppiness.webm">
+        <source src="partials/img/puppiness.mp4">
+        <source src="partials/img/puppiness.ogv">
+    </video>
+    <a href="outfitterForm.html" class="center-img center-video-button">EARLY ENTRY</a>
+</section>
+<!--IMAGES SIDE BY SIDE-->
+<div class="image-container">
+    <div class="card center-vh hover hover-1" style="width: 48%;">
+        <img src="partials/img/huntingOutfitter.jpeg" class="card-img-top" alt="Man walking though water carrying ducks"><span class="center-img img-text">Hunting guides</span>
+        <div class="hover-overlay"></div>
+        <div class="hover-1-content">
+            <h5 class="card-title text-light hover-1-description">Hunting sites</h5>
+            <p class="card-text text-light hover-1-description">Some other stuff can go here if you want to talk about this selection</p>
+        </div>
+    </div>
+
+    <div class="card center-vh hover hover-1" style="width: 48%;">
+        <img src="partials/img/fishingOutfitter.jpeg" class="card-img-top" alt="..."><span class="center-img img-text">Fishing guides</span>
+        <div class="hover-overlay"></div>
+        <div class="hover-1-content">
+            <h5 class="card-title text-light hover-1-description">Fishing sites</h5>
+            <p class="card-text text-light hover-1-description">Book a trip with experts, spend time on their land, learn how they hunt.</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
